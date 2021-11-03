@@ -1,7 +1,11 @@
+import { useContext } from "react";
+import FavouriteContext from "./store/FavouriteContext";
+
 function App() {
+  const FavouriteCtx = useContext(FavouriteContext);
   return (
     <div className="App">
-      <p>Hello World</p>
+      <p>{FavouriteCtx.test}</p>
     </div>
   );
 }
