@@ -42,8 +42,8 @@ function NewResource(props) {
   }
 
   useEffect(() => {
-    getScreenShot("https://www.thum.io/documentation/api/url");
     getDescription("https://www.thum.io/documentation/api/url");
+    getScreenShot("https://www.thum.io/documentation/api/url");
   }, []);
 
   return (
