@@ -11,7 +11,13 @@ function NewResource(props) {
 
   function submitHandler() {}
 
-  function inputHandler() {}
+  function inputHandler(event) {
+    setResourceData((previousState) => ({
+      ...previousState,
+      [event.target.name]: event.target.value,
+    }));
+    console.log(resourceData);
+  }
 
   function getScreenShot(url) {
     fetch(`https://image.thum.io/get/width/600/crop/800/${url}`)
@@ -42,16 +48,34 @@ function NewResource(props) {
   }
 
   useEffect(() => {
-    getDescription("https://www.thum.io/documentation/api/url");
-    getScreenShot("https://www.thum.io/documentation/api/url");
+    getDescription("https://www.google.es");
+    getScreenShot("https://www.google.es");
   }, []);
 
   return (
     <>
       <img src={resourceData.image} alt="" />
-      <p>{resourceData.title}</p>
-      <p>{resourceData.description}</p>
-      <form onSubmit={submitHandler}></form>
+
+      <form onSubmit={submitHandler}>
+        <div className="control">
+          <label htmlFor="title">Title</label>
+          <input
+            type="text"
+            value={resourceData.title}
+            name="title"
+            onChange={inputHandler}
+          />
+        </div>
+        <div className="control">
+          <label htmlFor="description">Description</label>
+          <input
+            type="text"
+            value={resourceData.description}
+            name="description"
+            onChange={inputHandler}
+          />
+        </div>
+      </form>
     </>
   );
 }
